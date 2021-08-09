@@ -1,0 +1,301 @@
+@tailwind base;
+
+@tailwind components;
+
+@font-face {
+  font-family: 'myanmar-regular';
+  src: url('../fonts/NotoSerifMyanmar-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'hiragino-w4';
+  src: url('../fonts/HiraginoSansW4.otf');
+}
+
+@tailwind utilities;
+
+
+html {
+  font-size: calc(100vw / 1440);
+}
+
+body {
+  font-size: 16rem;
+}
+
+.l-header {
+  padding: 53px 62rem 38px 92rem;
+
+  .logo a {
+    font-size: 22px;
+    line-height: 65px;
+    span {
+      font-size: 27px;
+      margin-left: 15px;
+    }
+  }
+
+  .nav-pc {
+    ul {
+      li {
+        padding: 20px 28px;
+        a {
+          display: block;
+          font-size: 15px;
+          position: relative;
+          padding: 7px 4px;
+          &::after {
+            content: '';
+            /*絶対配置で線の位置を決める*/
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background:black;
+            /*アニメーションの指定*/
+            transition: transform 0.25s cubic-bezier(0.65, 0, 0.35, 1);
+            transform: scale(0, 1);/*X方向0、Y方向1*/
+            transform-origin: right;
+            transform-origin: center top;/*上部中央基点*/            
+          }
+          &:hover::after {
+            transform: scale(1, 1);/*X方向にスケール拡大*/
+          }
+        }
+      }
+    }
+    .header-mail-btn {
+      width: 188px;
+      font-size: 15px;
+      margin-left: 28px;
+      img {
+        width: 21px;
+        height: fit-content;
+        margin-right: 15.4px;
+      }
+    }
+  }
+}
+
+@screen xl {
+    
+  .l-header {
+    padding: 33px 42rem 28px 52rem;
+
+    .logo a {
+      font-size: 18px;
+      line-height: 60px;
+      span {
+        font-size: 23px;
+        margin-left: 12px;
+      }
+    }
+
+    .nav-pc {
+      ul {
+        li {
+          padding: 16px 16px;
+          a {
+            font-size: 13px;
+            padding: 5px 3px;
+          }
+        }
+      }
+      .header-mail-btn {
+        width: 168px;
+        font-size: 13px;
+        margin-left: 20px;
+        img {
+          width: 16px;
+          margin-right: 15.4px;
+        }
+      }
+    }
+  }
+  /* Main menu positionning */
+  .main-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    background: #FFF;
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+    transition: all .375s;
+  }
+
+  .main-nav.is-open {
+    opacity: 1;
+    z-index: 100;
+    visibility: visible;
+  }
+
+  /* Yellow band effect */
+  .main-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -15px;
+    background: #00A7FF;
+    transform-origin: 0 0;
+    transform: skew(-14deg) translateX(-120%);
+    transition: all .275s .1s;
+  }
+
+  .main-nav.is-open::before {
+    transform: skew(-14deg) translateX(0);
+  }
+
+  /* Skewing effect on menu links */
+  .main-nav ul {
+    display: inline-flex;
+    flex-direction: column;
+    height: 93%; /* Should be 100%, but we have a notice message :D */
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-18%) skew(-16deg);
+  }
+
+  .main-nav li {
+    display: block;
+    margin: .5rem 0;
+    text-align: right;
+    transform: skew(16deg);
+  }
+
+  /* Apparition effect on links */
+  .main-nav a {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .main-nav.is-open a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .main-nav li:nth-child(1) a {
+    transition: all 275ms 175ms
+  }
+  .main-nav li:nth-child(2) a {
+    transition: all 275ms 225ms
+  }
+  .main-nav li:nth-child(3) a {
+    transition: all 275ms 275ms
+  }
+  .main-nav li:nth-child(4) a {
+    transition: all 275ms 325ms
+  }
+  .main-nav li:nth-child(5) a {
+    transition: all 275ms 375ms
+  }
+
+
+  /* Decoration */
+  .main-nav ul,
+  .main-nav li {
+    list-style: none;
+    padding: 0;
+  }
+  .main-nav a {
+    display: block;
+    padding: 23px 0;
+    color: white;
+    font-size: 20px!important;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
+  .open-main-nav {
+    position: absolute;
+    top: 25px;
+    padding-top: 20px;
+    right: 25px;
+    z-index: 1000;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .open-main-nav:focus {
+    outline: none;
+  }
+  .burger {
+    position: relative;
+    display: block;
+    width: 28px;
+    height: 4px;
+    margin: 0 auto;
+    background: black;
+    transform: skew(5deg);
+    transition: all .275s;
+  }
+
+  .burger:after,
+  .burger:before {
+    content: '';
+    display: block;
+    height: 100%;
+    background: black;
+    transition: all .275s;
+  }
+
+  .burger:after {
+    transform: translateY(-12px) translateX(-2px) skew(-20deg);
+  }
+
+  .burger:before {
+    transform: translateY(-16px) skew(-10deg);
+  }
+
+  /* Toggle State part */
+  .is-open .burger {
+    transform: skew(5deg) translateY(-8px) rotate(-45deg);
+  }
+
+  .is-open .burger:before {
+    transform: translateY(0px) skew(-10deg) rotate(75deg);
+  }
+
+  .is-open .burger:after {
+    transform: translateY(-12px) translateX(10px) skew(-20deg);
+    opacity: 0;
+  }
+
+  /* MENU Text part */
+
+  .burger-text {
+    display: block;
+    font-size: 9px;
+    letter-spacing: .05em;
+    margin-top: .5em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    color: black;
+  }
+
+  .device {
+    position: relative;
+    width: 345px;
+    height: 600px;
+    background: #FFF;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    box-shadow: 0 0 0 10px rgba(0,0,0,.1);
+  }
+
+  .container {
+    position: absolute;
+    top: 0; right: 0;
+    bottom: 0; left: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #eee, #ddd);
+  }
+
+}

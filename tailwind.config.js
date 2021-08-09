@@ -11,31 +11,32 @@ module.exports = {
       '2xl': {'max': '1535px'},
       // => @media (max-width: 1535px) { ... }
   
-      'xl': {'max': '1169px'},
+      'xl': {'max': '1023px'},
       // => @media (max-width: 1169px) { ... }
   
-      'lg': {'max': '1049px'},
+      'lg': {'max': '899px'},
       // => @media (max-width: 1049px) { ... }
   
-      'md': {'max': '899px'},
+      'md': {'max': '767px'},
       // => @media (max-width: 899px) { ... }
   
       'sm': {'max': '639px'},
       // => @media (max-width: 639px) { ... }
     },
-    // extend: {
-    //   fontFamily: {
-    //     'shingo-debold': ['shingo-debold'],
-    //   },
-    //   textColor: {
-    //     'green': '#3d8900',
-    //   },
-    // },
+    extend: {
+      fontFamily: {
+        'myanmar-regular': ['myanmar-regular'],
+        'hiragino-w4': ['hiragino-w4'],
+      },
+      textColor: {
+        'blue': '#00A7FF',
+      },
+    },
+    backgroundColor: theme => ({
+     ...theme('colors'),
+     'blue': '#00A7FF',
+    })
   },
 	variants: {
   },
-	plugins: [],
-  // corePlugins: {
-  //   container: false,
-  // }
 }
