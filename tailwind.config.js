@@ -27,6 +27,7 @@ module.exports = {
       fontFamily: {
         'myanmar-regular': ['myanmar-regular'],
         'hiragino-w4': ['hiragino-w4'],
+        'slabo27px-regular': ['slabo27px-regular'],
       },
       textColor: {
         'blue': '#00A7FF',
